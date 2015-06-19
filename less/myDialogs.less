@@ -1,0 +1,61 @@
+@import "utils.less";
+
+@blueColor: #047CFF;
+@marginside: 15px;
+@marginup: 15px;
+*{
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    border: 0;
+    background-color: transparent;
+}
+
+.myDialogs{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.myDialogs-inner{
+    padding-top: @marginup;
+    padding-bottom: @marginup;
+    font: 14px/1.2 "microsoft yahei";
+    background-color: rgba(255,255,255,1);
+    .border-radius(); 
+}
+
+.btn{
+  display: block;
+  margin: 0 @marginside; 
+  height: 30px;
+  line-height: 30px;
+  text-align: center; 
+  cursor: pointer;
+}
+.red-btn{
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.red-btn:hover,.red-btn:focus,.red-btn:active,.red-btn.active{
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925
+}
+
+.myAlert{
+  min-width: 200px;
+  max-width: 260px;
+  text-align: center;
+  .myAlert-msg{
+      color: #454545;
+      padding: 0 @marginside;
+      margin-bottom: 15px;
+      line-height: 20px;
+  }
+}
