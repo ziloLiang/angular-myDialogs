@@ -1,8 +1,6 @@
 @import "utils.less";
+@import "option.less";
 
-@blueColor: #047CFF;
-@marginside: 15px;
-@marginup: 15px;
 *{
     margin: 0;
     padding: 0;
@@ -13,49 +11,134 @@ button{
     background-color: transparent;
 }
 
+.clearfix{
+    *zoom: 1;
+    &:before,&:after{
+        content: " ";
+        display: table;
+    }
+    &:after{
+        clear: both;
+    }
+}
+
 .myDialogs{
   position: fixed;
-  top: 50%;
-  left: 50%;
   -webkit-overflow-scrolling: touch;
+  .transition(opacity 0.3s ease);
+  z-index: 757543;
+  opacity: 0;
+  &.center{
+      top: 50%;
+      left: 50%;
+  }
+  &.fade{
+      opacity: 1;
+  }
+  .backMask{
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: #000;
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+      z-index: 74835;
+  }
 }
 
 .myDialogs-inner{
-    padding-top: @marginup;
-    padding-bottom: @marginup;
-    font: 14px/1.2 "microsoft yahei";
-    background-color: rgba(255,255,255,1);
-    .border-radius(); 
+    position: relative;
+    z-index: 74835 + 10;
 }
 
 .btn{
-  display: block;
-  margin: 0 @marginside; 
-  height: 30px;
-  line-height: 30px;
-  text-align: center; 
-  cursor: pointer;
-}
-.red-btn{
-  color: #fff;
-  background-color: #d9534f;
-  border-color: #d43f3a;
-}
-
-.red-btn:hover,.red-btn:focus,.red-btn:active,.red-btn.active{
-    color: #fff;
-    background-color: #c9302c;
-    border-color: #ac2925
-}
-
-.myAlert{
-  min-width: 200px;
-  max-width: 260px;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "microsoft yahei";
+  line-height: 1.42857143;
   text-align: center;
-  .myAlert-msg{
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  .border-radius();
+}
+
+.alert{
+  max-width: 600px;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  @media screen and (max-width: 640px){
+    max-width: 300px;
+  } 
+  &.normal{
+    .blue-panel;
+  }
+  &.error{
+    .red-panel;
+  }
+  &.success{
+    .green-panel;
+  }
+}
+
+.btnAlert{
+  min-width: 200px;
+  max-width: 300px;
+  text-align: center;
+  border-color: #e5e5e5;
+  .msg{
       color: #454545;
       padding: 0 @marginside;
       margin-bottom: 15px;
       line-height: 20px;
   }
+  .myAlert-btn{
+      display: block;
+      margin: 0 20px;
+      color: #fff;
+      border: 1px solid transparent;
+  }
+  &.normal{
+      .btn{
+          .blue-btn();
+      }
+  }
+  &.error{
+      .btn{
+          .red-btn();
+      }
+  }
+  &.success{
+      .btn{
+          .green-btn();
+      }
+  }
+}
+
+.myConfirm{
+    border-color: #E5E5E5;
+    width: 300px;
+    .msg{
+      color: #454545;
+      font-size: 14px;
+      padding: 0 @marginside;
+      margin-bottom: 15px;
+      line-height: 20px;
+    }
+    .btn-wapper{
+        margin: 0 @marginside;
+        .btn{
+            float: right;
+            margin-left: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
 }

@@ -1,0 +1,71 @@
+@import "utils.less";
+
+@blueColor: #047CFF;
+@marginside: 15px;
+@marginup: 20px;
+
+.panel{
+  position: relative;
+  padding-top: @marginup;
+  padding-bottom: @marginup;
+  font: 14px/1.2 "microsoft yahei";
+  background-color: #fff;
+  border: 1px solid transparent;
+  .border-radius(4px);
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.blue-panel{
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.red-panel{
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.green-panel{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.blue-btn{
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  &:hover{
+      background-color: darken(#337ab7, 10%);
+  }
+}
+
+.gray-btn{
+  color: #666;
+  background-color: #ddd;
+  border-color: #e5e5e5;
+  &:hover{
+      background-color: darken(#ddd, 10%);
+  }
+}
+
+.red-btn{
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  &:hover{
+      background-color: darken(#d9534f, 10%);
+  }
+}
+
+.green-btn{
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  &:hover{
+      background-color: darken(#5cb85c, 10%);
+  }
+}

@@ -3,35 +3,32 @@
   <head>
     <title>$q</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
     <link rel="stylesheet" href="css/myDialogs.css" />
     <script type="text/javascript" src="js/angular.js" ></script>
-    <script type="text/javascript" src="js/myDialogs.js" ></script>
+    <script type="text/javascript" src="dest/angular-myDialogs.min.js" ></script>
     <style>
       body{
-        background: #1bbc9d;
+        background: #f0f0f0;
+        font: 14px/1.4 "微软雅黑";
       }
-      .fade-in.ng-enter,
-      .fade-in.ng-leave {
-      transition: 2s linear all;
-      -webkit-transition: 2s linear all;
+      .DemoList div{
+        padding: 10px;
       }
-      .fade-in.ng-enter {
-      opacity: 0;
-      color: green;
-      }
-      .fade-in.ng-enter.ng-enter-active {
-      opacity: 1;
-      color: black;
-      }
-      .fade-in.ng-leave {}
-      .fade-in.ng-leave.ng-leave-active {
-      opacity: 0;
+      .DemoList div:nth-child(odd){
+        background: #fff;
       }
     </style>
   </head>
   <body >
-      <div ng-controller="HomeController">
-          <div ng-click="clickme();">please click me </div>
+      <div class="DemoList" ng-controller="HomeController">
+          <div ng-click="myAlert();">myAlert</div>
+          <div ng-click="myError();">myError</div>
+          <div ng-click="mySuccess();">mySuccess</div>
+          <div ng-click="myBtnAlert();">myBtnAlert</div>
+          <div ng-click="myBtnError();">myBtnError</div>
+          <div ng-click="myBtnSuccess();">myBtnSuccess</div>
+          <div ng-click="myConfirm();">myConfirm</div>
       </div>
   <script>
     (function(angular){
@@ -42,30 +39,61 @@
       var app = angular.module('app', ['myDialogs'])
       .controller('HomeController', function($scope,$q,$timeout,myDialogs) {
           
-          var layout = function(){
-            var defered = $q.defer();
-            var num = Math.round(Math.random()  *10);
-            $timeout(function(){
-              if(num>=5){
-                defered.resolve(num+"大于5");
-              }else{
-                defered.reject(num+"小于5");
-              }
-            },2000);
-            return defered.promise;
-          };
           //console.log($scope);
-          $scope.clickme = function(){
-//          UserService.setCurrentUser("aaaa");
-//          alert(UserService.getCurrentUser());
+          $scope.myAlert = function(){
 //          var popUp = myDialogs.popFream({
 //            template: "<div ng-click='aaa();'><span>{{text}}</span></div>",
 //            controller: "PopController"
 //          });
             myDialogs.myAlert({
-              "msg":"im a message from html 翻译成中文就是我是个信息"
+              "msg":"我是一个普通Alert"
             });
-
+          }
+          
+          $scope.myError = function(){
+            myDialogs.myAlert({
+              "msg":"我是一个错误提示",
+              type: "error"
+            });
+          }
+          
+          $scope.mySuccess = function(){
+            myDialogs.myAlert({
+              "msg":"我是一个成功提示我是一个成功提示我是一个成功提示我是一个成功提示",
+              "backMask": true,
+              type: "success"
+            });
+          }
+          
+          $scope.myBtnAlert = function(){
+            myDialogs.myBtnAlert({
+              "msg":"我是一个普通Alert"
+            });
+          }
+          
+          $scope.myBtnError = function(){
+            myDialogs.myBtnAlert({
+              "msg":"我是一个错误提示我是一个错误提示我是一个错误提示我是一个错误提示",
+              type: "error"
+            });
+          };
+          
+          $scope.myBtnSuccess = function(){
+            myDialogs.myBtnAlert({
+              "msg":"我是一个成功提示",
+              "backMask": true,
+              type: "success"
+            });
+          }
+          
+          $scope.myConfirm = function(){
+            myDialogs.myConfirm({
+              "msg":"我是一个myConfirm,我是一个粉刷匠,粉刷十分忙",
+              "backMask": true,
+              "yesCallback": function(){
+                alert("yesCallback");
+              }
+            });
           }
           
           $scope.aaa = function(){
