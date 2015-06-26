@@ -4,9 +4,9 @@
     <title>$q</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" >
-    <link rel="stylesheet" href="css/myDialogs.css" />
-    <script type="text/javascript" src="js/angular.js" ></script>
-    <script type="text/javascript" src="dest/angular-myDialogs.min.js" ></script>
+    <link rel="stylesheet" href="dest/css/myDialogs.min.css" />
+    <script type="text/javascript" src="src/js/angular.js" ></script>
+    <script type="text/javascript" src="dest/js/angular-myDialogs.min.js" ></script>
     <style>
       body{
         background: #f0f0f0;
@@ -17,6 +17,10 @@
       }
       .DemoList div:nth-child(odd){
         background: #fff;
+      }
+      .popFream{
+        padding: 10px;
+        background-color: #fff;
       }
     </style>
   </head>
@@ -29,12 +33,10 @@
           <div ng-click="myBtnError();">myBtnError</div>
           <div ng-click="myBtnSuccess();">myBtnSuccess</div>
           <div ng-click="myConfirm();">myConfirm</div>
+          <div ng-click="myFream();">myFream</div>
       </div>
   <script>
     (function(angular){
-
-
-
 
       var app = angular.module('app', ['myDialogs'])
       .controller('HomeController', function($scope,$q,$timeout,myDialogs) {
@@ -96,19 +98,27 @@
             });
           }
           
-          $scope.aaa = function(){
-            //alert("1、旧密码不能为空\n2、新密码不能为空<br />3、重复密码不能为空<br />值里面的<br />我的本意是想用来换行的，但是把这个变量直接绑定到页面不会显示换行，求解决办法");
-            myDialogs.cancel();
-          };
+          $scope.myFream = function(){
+            myDialogs.myFream({
+              "template": "<div class='popFream'><div><input ng-model='text' /></div><span>{{text}}</span><p ng-click='aaa();'>点我关闭</p></div>",
+              "controller": "PopController",
+              "backMask": true,
+              "data":{
+                "args": "传过来的参数"
+              }
+            });
+          }
+          
       });
-      app.controller("PopController",function($scope,$DialogsPromise){
+      app.controller("PopController",function($scope,$DialogsPromise,$DialogsData){
           $scope.aaa = function(){
             $DialogsPromise.close().then(function(){
-              $("body").css("background","red");
+              //document.querySelector("body").style.backgroundColor = "#2d3e50";
+              alert($DialogsData.args);
             });
           };
           //console.log($modalInstance);
-          $scope.text = "<p>1、旧密码不能为空 <br /> 2、新密码不能为空<br /><";
+          $scope.text = "我会跟着文本框改变";
       });
       
       
